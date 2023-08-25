@@ -27,7 +27,7 @@ Note: Make sure you have sufficient permissions enabled in the GitHub token, esp
 1. Run the script using:
 
 ```bash
-python repo_creator.py
+python src/repo_creator.py
 ```
 1. A GUI window will appear with a button labeled "Create & Push Repository". Click on it.
 2. A file dialog will appear, allowing you to select the directory you want to commit and push to GitHub.
