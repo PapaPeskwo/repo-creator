@@ -24,10 +24,10 @@ Note: Make sure you have sufficient permissions enabled in the GitHub token, esp
 
 # Usage
 
-1. Run the script using:
+1. To use the GUI functionality provided by `tkinter`, run the script with the `-tk` flag:
 
 ```bash
-python src/repo_creator.py
+python src/repo_creator.py -tk
 ```
 1. A GUI window will appear with a button labeled "Create & Push Repository". Click on it.
 2. A file dialog will appear, allowing you to select the directory you want to commit and push to GitHub.
