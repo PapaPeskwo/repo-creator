@@ -63,7 +63,7 @@ def create_and_push_repo(use_tk):
             directory = filedialog.askdirectory(title="Select Folder")
             root.quit()  # Terminate the Tkinter main loop
         else:
-            directory = os.path.normpath(input("Please enter the path to the folder: "))
+            directory = os.path.normpath(os.path.expanduser(input("Please enter the path to the folder: ")))
 
         if not directory:
             return
