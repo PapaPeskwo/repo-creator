@@ -8,7 +8,7 @@ The GitHub Repo Upstreamer is a Python script that allows users to easily initia
 3. Install the necessary packages:
 
 ```bash
-pip install tkinter pygithub python-dotenv
+pip install -r requirements.txt
 ```
 
 4. There is a .env.template file provided in the root directory. Rename this file to .env.
@@ -18,7 +18,7 @@ pip install tkinter pygithub python-dotenv
 ```env
 YOUR_GITHUB_PERSONAL_ACCESS_TOKEN=your_actual_token_here
 ```
-Note: Make sure you have sufficient permissions enabled in the GitHub token, especially repo-related scopes.
+Select the "repo" scope.
 
 6. Save and close the .env file.
 
