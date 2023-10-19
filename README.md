@@ -1,6 +1,6 @@
 # Description
 
-The GitHub Repo Upstreamer is a Python script that allows users to easily initialize, commit, and push a directory to GitHub, all with the convenience of a GUI interface. The script makes use of the tkinter library to present a simple GUI for the user to select a folder, and then decide whether the repository should be public or private.
+The repo-creator is a Python script that allows users to easily initialize, commit, and push a directory to GitHub directly from your terminal.
 
 # Setup and Installation
 1. Clone or download this repository to your local machine.
