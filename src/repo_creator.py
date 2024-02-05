@@ -5,7 +5,6 @@ from github import Github
 from dotenv import load_dotenv
 import argparse
 
-# Load environment variables from .env
 load_dotenv()
 
 def repo_exists(user, repo_name):
@@ -17,6 +16,19 @@ def repo_exists(user, repo_name):
 
 def git_commands(directory, commit_message, private, use_ssh):
     os.chdir(directory)
+
+    if os.path.exists('.git'):
+        print("A .git directory is already present in this directory.")
+
+        try:
+            upstream_url = subprocess.check_output(['git', 'config', '--get', 'remote.origin.url'])
+            upstream_url = upstream_url.decode('utf-8').strip()
+            print(f"The .git in this directory points to the following upstream: {upstream_url}")
+        except subprocess.CalledProcessError:
+            print("Failed to retrieve upstream information.")
+
+        exit()
+
     commands = [
         'git init',
         'git add .',
@@ -27,8 +39,7 @@ def git_commands(directory, commit_message, private, use_ssh):
         process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
         process.communicate()
 
-    # Use PyGithub to create a repo on GitHub
-    token = os.getenv('YOUR_GITHUB_PERSONAL_ACCESS_TOKEN')  # Retrieve token from environment variable
+    token = os.getenv('YOUR_GITHUB_PERSONAL_ACCESS_TOKEN')
     if not token:
         raise ValueError("GitHub token not found in .env file")
     github = Github(token)
@@ -59,9 +70,9 @@ def create_and_push_repo(use_tk):
             import tkinter as tk
             from tkinter import filedialog
             root = tk.Tk()
-            root.withdraw()  # Hide the root window
+            root.withdraw()
             directory = filedialog.askdirectory(title="Select Folder")
-            root.quit()  # Terminate the Tkinter main loop
+            root.quit()
         else:
             directory = os.path.normpath(os.path.expanduser(input("Please enter the path to the folder: ")))
 
@@ -73,7 +84,6 @@ def create_and_push_repo(use_tk):
         user = github.get_user()
         repo_name = os.path.basename(directory)
 
-        # Check if repo already exists
         if repo_exists(user, repo_name):
             print(f"Repository '{repo_name}' already exists on GitHub. Exiting...")
             exit()
