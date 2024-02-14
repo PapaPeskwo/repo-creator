@@ -36,6 +36,14 @@ source ~/.bashrc
 Now you can cd into whichever directory you want and use your alias.
 
 ## Normal usage
+1. Write:
+```bash
+python src/repo_creator.py -tk
+```
+2. Follow the steps. If you're on windows, you'll most likely want to push with HTTPS. Mac and Linux users use SSH.
+
+## Use with a GUI
+
 1. To use the GUI functionality provided by `tkinter`, run the script with the `-tk` flag:
 
 ```bash
@@ -53,10 +61,6 @@ python src/repo_creator.py -tk
 - `tkinter` for the GUI
 - `PyGithub` to interact with the GitHub API
 - `python-dotenv` to load environment variables from the .env file
-
-# Caution
-
-Handle your personal access token with care. It provides access to your GitHub account, and leaking it can compromise your repositories. Always store it in a secure place and avoid committing it to any public repository. Ensure that the .env file is added to your .gitignore to prevent unintentional pushes.
 
 # Contribute
 
