@@ -24,6 +24,18 @@ Select the "repo" scope.
 
 # Usage
 
+## Alias
+You can now run the code with an alias in your terminal. In your .bashrc or .zshrc (or wherever you store your aliases) add a line like this:
+```bash
+alias <your_alias_name>='python3 /path/to/cloned/repo/src/alias_repo_creator.py
+```
+Then source the location you added your alias to, for this example we'll use .bashrc:
+```bash
+source ~/.bashrc
+```
+Now you can cd into whichever directory you want and use your alias.
+
+## Normal usage
 1. To use the GUI functionality provided by `tkinter`, run the script with the `-tk` flag:
 
 ```bash
