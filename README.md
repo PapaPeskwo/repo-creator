@@ -36,9 +36,9 @@ source ~/.bashrc
 Now you can cd into whichever directory you want and use your alias.
 
 ## Normal usage
-1. Write:
+1. After cloning, in your terminal write:
 ```bash
-python src/repo_creator.py -tk
+python src/repo_creator.py
 ```
 2. Follow the steps. If you're on windows, you'll most likely want to push with HTTPS. Mac and Linux users use SSH.
 
