@@ -7,6 +7,7 @@ from datetime import datetime
 from github import Github
 from dotenv import load_dotenv
 import argparse
+import webbrowser
 
 load_dotenv()
 
@@ -85,6 +86,11 @@ def create_and_push_repo():
         commit_message = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         git_commands(directory, commit_message, private=not public, use_ssh=use_ssh)
         print("Repository created and pushed!")
+
+        open_in_browser = input("Do you want to open the repository in your browser? [Y/n]: ").strip().lower()
+        if open_in_browser == 'y':
+            repo_url = f'https://github.com/{user.login}/{repo_name}'
+            webbrowser.open(repo_url)
 
     except KeyboardInterrupt:
         print("\nOperation interrupted by user. Exiting...")
