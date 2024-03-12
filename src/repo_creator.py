@@ -19,15 +19,20 @@ def git_commands(directory, commit_message, private, use_ssh):
 
     if os.path.exists('.git'):
         print("A .git directory is already present in this directory.")
-
         try:
             upstream_url = subprocess.check_output(['git', 'config', '--get', 'remote.origin.url'])
             upstream_url = upstream_url.decode('utf-8').strip()
             print(f"The .git in this directory points to the following upstream: {upstream_url}")
         except subprocess.CalledProcessError:
             print("Failed to retrieve upstream information.")
-
         exit()
+
+    if not any(os.listdir(directory)) or os.listdir(directory) == ['..git']:
+        readme_path = os.path.join(directory, 'README.md')
+        project_name = os.path.basename(directory)
+        with open(readme_path, 'w') as readme:
+            readme.write(project_name)
+        print("Created README.md in empty directory.")
 
     commands = [
         'git init',

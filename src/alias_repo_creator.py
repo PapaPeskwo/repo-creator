@@ -30,6 +30,13 @@ def git_commands(directory, commit_message, private, use_ssh):
             print("Failed to retrieve upstream information.")
         exit()
 
+    if not any(os.listdir(directory)) or os.listdir(directory) == ['..git']:
+        readme_path = os.path.join(directory, 'README.md')
+        project_name = os.path.basename(directory)
+        with open(readme_path, 'w') as readme:
+            readme.write(project_name)
+        print("Created README.md in empty directory.")
+
     commands = [
         'git init',
         'git add .',
