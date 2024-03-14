@@ -11,57 +11,50 @@ The repo-creator is a Python script that allows users to easily initialize, comm
 pip install -r requirements.txt
 ```
 
-4. There is a .env.template file provided in the root directory. Rename this file to .env.
+4. Rename the provided .env.template file in the root directory to .env.
 
-5. Open the .env file and replace your_actual_token_here with your GitHub Personal Access Token in the YOUR_GITHUB_PERSONAL_ACCESS_TOKEN field.
+5. Open the .env file and replace `your_actual_token_here` with your GitHub Personal Access Token in the `YOUR_GITHUB_PERSONAL_ACCESS_TOKEN` field.
 
 ```env
 YOUR_GITHUB_PERSONAL_ACCESS_TOKEN=your_actual_token_here
 ```
-Select the "repo" scope.
+Ensure to select the "repo" scope when creating your token.
 
 6. Save and close the .env file.
 
 # Usage
 
-## Alias
-You can now run the code with an alias in your terminal. In your .bashrc or .zshrc (or wherever you store your aliases) add a line like this:
+## Alias Mode
+To use the script as an alias from any directory, add the following line to your `.bashrc`, `.zshrc`, or equivalent shell configuration file:
+
 ```bash
-alias <your_alias_name>='python3 /path/to/cloned/repo/src/alias_repo_creator.py
+alias <your_alias_name>='python3 /path/to/cloned/repo/repo_creator.py --alias'
 ```
-Then source the location you added your alias to, for this example we'll use .bashrc:
+Then, source your shell configuration file to activate the alias:
+
 ```bash
 source ~/.bashrc
 ```
-Now you can cd into whichever directory you want and use your alias.
+Now, you can navigate to any directory you wish to create a repository for and use your alias directly. Adding the `--alias` flag removes the step where the script asks you to enter the directory folder to be pushed to Github.
 
-## Normal usage
-1. After cloning, in your terminal write:
-```bash
-python src/repo_creator.py
-```
-2. Follow the steps. If you're on windows, you'll most likely want to push with HTTPS. Mac and Linux users use SSH.
-
-## Use with a GUI
-
-1. To use the GUI functionality provided by `tkinter`, run the script with the `-tk` flag:
+## Normal Usage
+To use the script in interactive mode, navigate to the cloned repository and execute:
 
 ```bash
-python src/repo_creator.py -tk
+python3 repo_creator.py
 ```
-1. A GUI window will appear with a button labeled "Create & Push Repository". Click on it.
-2. A file dialog will appear, allowing you to select the directory you want to commit and push to GitHub.
-3. After selecting a directory, a messagebox will prompt you to decide whether the repository should be public or private.
-4. Click "Yes" for a public repository or "No" for a private one.
-5. The script will then initialize a Git repository in the directory, commit its contents, create a new repository on GitHub, and then push the directory to that repository.
-6. A confirmation messagebox will appear once the process is complete.
+Follow the prompts to initialize, commit, and push your directory to GitHub.
+
+## GUI Mode
+To use the GUI functionality provided by `tkinter`, run the script with the `--tk` flag:
+
+```bash
+python3 repo_creator.py --tk
+```
+A GUI window will open, allowing you to select the directory you want to commit and push to GitHub through a user-friendly interface.
 
 # Dependencies
 
-- `tkinter` for the GUI
-- `PyGithub` to interact with the GitHub API
-- `python-dotenv` to load environment variables from the .env file
-
-# Contribute
-
-Feel free to fork this repository, make changes, and submit pull requests. Feedback and contributions are always welcome!
+- `tkinter` for the GUI.
+- `PyGithub` to interact with the GitHub API.
+- `python-dotenv` to load environment variables from the .env file.
