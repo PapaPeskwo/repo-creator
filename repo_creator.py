@@ -1,6 +1,3 @@
-# This is meant to be added as an alias in your bash or zsh config.abs
-# When you run the alias, it will create a repo from the directory you're in.abs
-
 import os
 import subprocess
 from datetime import datetime
@@ -72,9 +69,24 @@ def git_commands(directory, commit_message, private, use_ssh):
         process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
         process.communicate()
 
-def create_and_push_repo():
+def create_and_push_repo(use_tk, alias_mode):
     try:
-        directory = os.getcwd()
+        directory = None
+        if alias_mode:
+            directory = os.getcwd()
+        elif use_tk:
+            import tkinter as tk
+            from tkinter import filedialog
+            root = tk.Tk()
+            root.withdraw()
+            directory = filedialog.askdirectory(title="Select Folder")
+            root.quit()
+        else:
+            directory = os.path.normpath(os.path.expanduser(input("Please enter the path to the folder: ")))
+
+        if not directory:
+            return
+
         token = os.getenv('YOUR_GITHUB_PERSONAL_ACCESS_TOKEN')
         github = Github(token)
         user = github.get_user()
@@ -104,4 +116,9 @@ def create_and_push_repo():
         exit()
 
 if __name__ == "__main__":
-    create_and_push_repo()
+    parser = argparse.ArgumentParser(description="GitHub Repo Upstreamer")
+    parser.add_argument("--tk", action="store_true", help="Use tkinter for file dialog")
+    parser.add_argument("--alias", action="store_true", help="Use current directory as the repository folder")
+
+    args = parser.parse_args()
+    create_and_push_repo(args.tk, args.alias)
